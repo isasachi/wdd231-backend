@@ -25,12 +25,13 @@ app.post('/api/generate', async (req, res) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model: 'deepseek-chat',
+        model: 'deepseek/deepseek-chat:free',
         messages: [{ role: 'user', content: prompt }]
       })
     });
 
     const data = await response.json();
+
     res.json({ message: data.choices?.[0]?.message?.content || 'No response.' });
 
   } catch (error) {
